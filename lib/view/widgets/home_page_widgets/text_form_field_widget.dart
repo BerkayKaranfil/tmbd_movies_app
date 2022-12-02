@@ -28,7 +28,7 @@ class CustomTextFormWidget extends StatelessWidget {
                     color: Color(0xffFFFFFF),
                     size: 4.h,
                   )),
-              hintText: "Ne dinlemek istiyorsun?",
+              hintText: "Search",
               hintStyle: TextStyle(color: Color(0xffFFFFFF)),
               enabledBorder: OutlineInputBorder(
                 borderSide:

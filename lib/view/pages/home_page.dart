@@ -6,10 +6,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:tmbd_movies_app/provider/home_page_providers/category_list_provider.dart';
 import 'package:tmbd_movies_app/provider/home_page_providers/film_list_view_provider.dart';
+import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.dart';
 
 import '../widgets/home_page_widgets/category_text_list_widget.dart';
 import '../widgets/home_page_widgets/film_list_view_widget.dart';
+import '../widgets/home_page_widgets/popular_list_view_widget.dart';
 import '../widgets/home_page_widgets/text_form_field_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   FilmListViewProvider? data;
+  PopularProvider? data1;
 
   @override
   void initState() {
@@ -28,6 +32,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     data = Provider.of<FilmListViewProvider>(context, listen: false);
     data!.getTopRatedFilm();
+
+    data1= Provider.of<PopularProvider>(context, listen: false);
+    data1!.getPopularFilm();
     
   }
   @override
@@ -53,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     "What do you want to watch today?",
-                    style: GoogleFonts.inter(fontSize: 17),
+                    style: GoogleFonts.inter(fontSize: 17, color: Color(0xffFF1F8A)),
                   ),
                   CircleAvatar(
                     backgroundColor: Colors.transparent,
@@ -74,7 +81,28 @@ class _HomePageState extends State<HomePage> {
                 height: 2.h,
               ),
 
-              FilmListviewWidget()
+              //FilmListviewWidget()   ---> Alt satırdaki koddan çağırıyoruz. Bu sayede dinamik bir şekilde istediğimiz kategorinin arama sonuçları ekrana geliyor.
+             Consumer<CategoryProvider>(builder: (context, value, Widget) {
+               return Container(
+                height: 25.h,
+                width: 100.w,
+                child: value.textCategoryChance(),
+               );
+             },),
+             SizedBox(
+              height: 2.h,
+             ),
+             Row(
+               children: [
+                 Text("Popular",style: GoogleFonts.inter(fontSize: 20, color: Color(0xffFF1F8A), fontWeight: FontWeight.bold),),
+                 Spacer()
+               ],
+             ),
+             SizedBox(
+              height: 2.h,
+             ),
+             PopularListViewWidget()
+
             ],
           ),
         ),

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.dart';
 
-import '../../../provider/home_page_providers/film_list_view_provider.dart';
-
-class FilmListviewWidget extends StatelessWidget {
-  const FilmListviewWidget({
-    Key? key,
-  }) : super(key: key);
+class PopularListViewWidget extends StatelessWidget {
+  const PopularListViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FilmListViewProvider>(
+    return Consumer<PopularProvider>(
       builder: (context, value, Widget) {
         return Container(
           height: 24.h,
@@ -35,7 +34,7 @@ class FilmListviewWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topRatedModel.results![index].backdropPath}"),
+                              "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.popularModel.results![index].backdropPath}"),
                           fit: BoxFit.fitWidth),
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(10),
@@ -46,7 +45,8 @@ class FilmListviewWidget extends StatelessWidget {
                       width: 35.w,
                     //  color: Colors.red,
                       child: Text(
-                        value.topRatedModel.results![index].title.toString(),
+                        
+                       value.popularModel.results![index].title.toString(),
                         style: GoogleFonts.inter(fontSize: 13, color: Colors.white),
                       ))
                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:tmbd_movies_app/view/pages/movie_detail_page.dart';
 
 import '../../../provider/home_page_providers/film_list_view_provider.dart';
 
@@ -28,17 +29,22 @@ class FilmListviewWidget extends StatelessWidget {
                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   
-                  Container(
-                    margin: EdgeInsets.only(right: 5.w),
-                    height: 20.h,
-                    width: 30.w,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topRatedModel.results![index].backdropPath}"),
-                          fit: BoxFit.fitWidth),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(),));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 5.w),
+                      height: 20.h,
+                      width: 30.w,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topRatedModel.results![index].backdropPath}"),
+                            fit: BoxFit.fitWidth),
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                   Container(

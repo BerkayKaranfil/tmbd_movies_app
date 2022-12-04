@@ -31,7 +31,7 @@ class FilmListviewWidget extends StatelessWidget {
                   
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(film_id: value.topRatedModel.results![index].id!,),));
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 5.w),

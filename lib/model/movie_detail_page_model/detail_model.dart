@@ -1,29 +1,29 @@
 class DetailModel {
   bool? adult;
   String? backdropPath;
-  Null? belongsToCollection;
-  int? budget;
+  dynamic? belongsToCollection;
+  dynamic? budget;
   List<Genres>? genres;
   String? homepage;
-  int? id;
+  dynamic? id;
   String? imdbId;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  dynamic? popularity;
   String? posterPath;
   List<ProductionCompanies>? productionCompanies;
   List<ProductionCountries>? productionCountries;
   String? releaseDate;
-  int? revenue;
-  int? runtime;
+  dynamic? revenue;
+  dynamic? runtime;
   List<SpokenLanguages>? spokenLanguages;
   String? status;
   String? tagline;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  dynamic? voteAverage;
+  dynamic? voteCount;
 
   DetailModel(
       {this.adult,
@@ -143,7 +143,7 @@ class DetailModel {
 }
 
 class Genres {
-  int? id;
+  dynamic? id;
   String? name;
 
   Genres({this.id, this.name});
@@ -162,7 +162,7 @@ class Genres {
 }
 
 class ProductionCompanies {
-  int? id;
+  dynamic? id;
   String? logoPath;
   String? name;
   String? originCountry;

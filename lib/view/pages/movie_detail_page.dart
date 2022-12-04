@@ -7,11 +7,14 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../provider/movie_detail_page_providers/movie_credit_provider.dart';
 import '../../provider/movie_detail_page_providers/movie_detail_provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
-  const MovieDetailPage({super.key, required this.film_id});
+  const MovieDetailPage(
+      {super.key, required this.film_id, required this.film_id_credit});
   final int film_id;
+  final int film_id_credit;
 
   @override
   State<MovieDetailPage> createState() => _MovieDetailPageState();
@@ -23,6 +26,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     MovieDetailProvider? data2;
     data2 = Provider.of<MovieDetailProvider>(context, listen: false);
     data2.getIdChance(widget.film_id);
+
+    MovieCreditProvider? data3;
+    data3 = Provider.of<MovieCreditProvider>(context, listen: false);
+    data3.getCreditIdChance(widget.film_id_credit);
     super.initState();
   }
 
@@ -105,12 +112,17 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                value.detailModel.title.toString(),
-                                style: GoogleFonts.inter(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xffFFFFFF)),
+                              SizedBox(
+                                width: 65.w,
+                                child: FittedBox(
+                                  child: Text(
+                                    value.detailModel.title.toString(),
+                                    style: GoogleFonts.inter(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xffFFFFFF)),
+                                  ),
+                                ),
                               ),
                               Row(
                                 children: [
@@ -160,15 +172,27 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     child: Container(
                       height: 6.h,
                       width: 90.w,
-                      decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(60)),
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(60)),
                       child: Row(
                         children: [
                           Spacer(),
-                          Image.asset("assets/play.png", scale: 0.1.h, color: Color(0xffFFFFFF),),
+                          Image.asset(
+                            "assets/play.png",
+                            scale: 0.1.h,
+                            color: Color(0xffFFFFFF),
+                          ),
                           SizedBox(
                             width: 2.w,
                           ),
-                          Text("Watch Trailer",style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600,color: Color(0xffFFFFFF)),),
+                          Text(
+                            "Watch Trailer",
+                            style: GoogleFonts.inter(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xffFFFFFF)),
+                          ),
                           Spacer()
                         ],
                       ),
@@ -177,11 +201,55 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                   SizedBox(
                     height: 2.h,
                   ),
-                  Text("Main Cast", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xffFFFFFF)),),
+                  Text(
+                    "Main Cast",
+                    style: GoogleFonts.inter(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xffFFFFFF)),
+                  ),
                   SizedBox(
                     height: 2.h,
                   ),
-                  
+                  Consumer<MovieCreditProvider>(
+                    builder: (context, credit, Widget) {
+                      return SizedBox(
+                        height: 14.h,
+                        width: 100.w,
+                        child: ListView.builder(
+                          itemCount: credit.creditModel.cast![0].name
+                              .toString()
+                              .length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 4.w),
+                                  height: 10.h,
+                                  width: 20.w,
+                                  decoration: BoxDecoration(shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 0.5.w,
+                                    color: Color.fromARGB(255, 73, 71, 71)
+                                  ),
+                                  image: DecorationImage(image: NetworkImage("https://www.themoviedb.org/t/p/w600_and_h900_bestv2${credit.creditModel.cast![index].profilePath}"), fit: BoxFit.cover)),
+                                )
+                                /* CircleAvatar(
+                                  radius: 40,
+                                  child: Image(
+                                    image: NetworkImage(
+                                        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${credit.creditModel.cast![index].profilePath}"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ) */
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  )
                 ],
               ),
             )

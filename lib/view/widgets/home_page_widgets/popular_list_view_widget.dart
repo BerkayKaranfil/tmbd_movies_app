@@ -31,7 +31,7 @@ class PopularListViewWidget extends StatelessWidget {
                   
                   GestureDetector(
                     onTap: () {
-                     //  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(film_id: value.topRatedModel.results![index].id!, film_id_credit: value.topRatedModel.results![index].id!,),));
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(film_id: value.popularModel.results![index].id!, film_id_credit: value.popularModel.results![index].id!,),));
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 5.w),

@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         height: 100.h,
         width: 100.w,
@@ -59,8 +60,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "What do you want to watch today?",
-                    style: GoogleFonts.inter(fontSize: 17, color: Color(0xffFF1F8A)),
+                    "What do you want\nto watch today?",
+                    style: GoogleFonts.inter(fontSize: 3.5.h, color: Color(0xffFFFFFF), fontWeight: FontWeight.bold),
                   ),
                   CircleAvatar(
                     backgroundColor: Colors.transparent,
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
              ),
              Row(
                children: [
-                 Text("Popular",style: GoogleFonts.inter(fontSize: 20, color: Color(0xffFF1F8A), fontWeight: FontWeight.bold),),
+                 Text("Popular",style: GoogleFonts.inter(fontSize: 3.h, color: Color(0xffFFFFFF), fontWeight: FontWeight.bold),),
                  Spacer()
                ],
              ),

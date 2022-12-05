@@ -119,6 +119,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 SizedBox(
+                                  //height: 4.h,
                                   width: 65.w,
                                   child: FittedBox(
                                     child: Text(

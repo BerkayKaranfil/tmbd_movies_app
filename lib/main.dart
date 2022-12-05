@@ -8,6 +8,7 @@ import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_credi
 import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_detail_provider.dart';
 import 'package:tmbd_movies_app/view/pages/home_page.dart';
 import 'package:tmbd_movies_app/view/pages/movie_detail_page.dart';
+import 'package:tmbd_movies_app/view/pages/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: HomePage()
+          home: SearchPage()
+          //HomePage()
          // MovieDetailPage(film_id: 436270, film_id_credit: 436270,),
         ),);
       },

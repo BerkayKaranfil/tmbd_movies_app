@@ -6,6 +6,7 @@ import 'package:tmbd_movies_app/provider/home_page_providers/film_list_view_prov
 import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.dart';
 import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_credit_provider.dart';
 import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_detail_provider.dart';
+import 'package:tmbd_movies_app/provider/search_page_providers/search_provider.dart';
 import 'package:tmbd_movies_app/view/pages/home_page.dart';
 import 'package:tmbd_movies_app/view/pages/movie_detail_page.dart';
 import 'package:tmbd_movies_app/view/pages/search_page.dart';
@@ -26,14 +27,15 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => CategoryProvider(),),
           ChangeNotifierProvider(create: (context) => PopularProvider(),),
           ChangeNotifierProvider(create: (context) => MovieDetailProvider(),),
-          ChangeNotifierProvider(create: (context) => MovieCreditProvider(),)
+          ChangeNotifierProvider(create: (context) => MovieCreditProvider(),),
+          ChangeNotifierProvider(create: (context) => SearchProvider(),)
         ], child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SearchPage()
-          //HomePage()
+          home: //SearchPage()
+          HomePage()
          // MovieDetailPage(film_id: 436270, film_id_credit: 436270,),
         ),);
       },

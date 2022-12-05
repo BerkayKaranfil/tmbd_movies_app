@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../pages/search_page.dart';
+
 class CustomTextFormWidget extends StatelessWidget {
   const CustomTextFormWidget({
     Key? key,
@@ -16,7 +18,7 @@ class CustomTextFormWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(32)),
       child: TextFormField(
           onTap: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(),));
+             Navigator.push(context, MaterialPageRoute(builder: (context) => SearchPage(),));
           },
           style: GoogleFonts.inter(color: Color(0xffFFFFFF)),
           cursorColor: Colors.white,

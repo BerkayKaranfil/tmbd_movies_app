@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.dart';
 
 import '../../pages/movie_detail_page.dart';
@@ -24,7 +25,8 @@ class PopularListViewWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return Column(
+              return value.popularModel.results != null
+             ? Column(
                // crossAxisAlignment: CrossAxisAlignment.center,
                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -57,7 +59,31 @@ class PopularListViewWidget extends StatelessWidget {
                         style: GoogleFonts.inter(fontSize: 13, color: Colors.white),
                       ))
                 ],
-              );
+              ) : Shimmer.fromColors(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 20.h,
+                            width: 30.w,
+                            margin: EdgeInsets.only(right: 5.w),
+                            decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(right: 5.w),
+                            height: 2.h,
+                            width: 20.w,
+                            color: Colors.amber,
+                          )
+                        ],
+                      ),
+                      baseColor: Colors.grey.shade300.withOpacity(0.4),
+                      highlightColor: Colors.grey.shade500.withOpacity(0.4))
+              ;
             },
           ),
         );

@@ -19,9 +19,9 @@ class CategoryProvider extends ChangeNotifier {
       case 0:
         return FilmListviewWidget();
       case 1:
-        return AnimesCategory();
-      case 2:
         return SeriesCategory();
+      case 2:
+        return AnimesCategory();
       case 3:
         return null;
       case 4:

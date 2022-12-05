@@ -7,6 +7,7 @@ import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.da
 import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_credit_provider.dart';
 import 'package:tmbd_movies_app/provider/movie_detail_page_providers/movie_detail_provider.dart';
 import 'package:tmbd_movies_app/provider/search_page_providers/search_provider.dart';
+import 'package:tmbd_movies_app/provider/series_page_providers/series_provider.dart';
 import 'package:tmbd_movies_app/view/pages/home_page.dart';
 import 'package:tmbd_movies_app/view/pages/movie_detail_page.dart';
 import 'package:tmbd_movies_app/view/pages/search_page.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => PopularProvider(),),
           ChangeNotifierProvider(create: (context) => MovieDetailProvider(),),
           ChangeNotifierProvider(create: (context) => MovieCreditProvider(),),
-          ChangeNotifierProvider(create: (context) => SearchProvider(),)
+          ChangeNotifierProvider(create: (context) => SearchProvider(),),
+          ChangeNotifierProvider(create: (context) => SeriesProvider(),)
         ], child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

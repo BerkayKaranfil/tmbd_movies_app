@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tmbd_movies_app/provider/home_page_providers/popular_provider.dart';
 
+import '../../pages/movie_detail_page.dart';
+
 class PopularListViewWidget extends StatelessWidget {
   const PopularListViewWidget({super.key});
 
@@ -27,17 +29,22 @@ class PopularListViewWidget extends StatelessWidget {
                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   
-                  Container(
-                    margin: EdgeInsets.only(right: 5.w),
-                    height: 20.h,
-                    width: 30.w,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.popularModel.results![index].backdropPath}"),
-                          fit: BoxFit.fitWidth),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () {
+                     //  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetailPage(film_id: value.topRatedModel.results![index].id!, film_id_credit: value.topRatedModel.results![index].id!,),));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 5.w),
+                      height: 20.h,
+                      width: 30.w,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(
+                                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.popularModel.results![index].backdropPath}"),
+                            fit: BoxFit.fitWidth),
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                   Container(

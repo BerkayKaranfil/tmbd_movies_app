@@ -4,7 +4,7 @@ import 'package:tmbd_movies_app/model/movie_detail_page_model/credit_model.dart'
 import '../../services/movie_datail_page_services/credit_service.dart';
 
 class MovieCreditProvider extends ChangeNotifier {
-  CreditModel creditModel = CreditModel();
+   CreditModel creditModel = CreditModel();
   int film_id_credit = 0;
 
   getCreditMovie() async {
@@ -16,5 +16,6 @@ class MovieCreditProvider extends ChangeNotifier {
     film_id_credit = idChance;
     getCreditMovie();
     notifyListeners();
-  }
+  } 
+  
 }

@@ -6,6 +6,8 @@ class PopularProvider extends ChangeNotifier{
   bool isLoaded = false;
   PopularModel popularModel = PopularModel();
 
+  var topRatedModel;
+
   getPopularFilm()async{
     isLoaded = false;
     popularModel = (await getPopularService())!;

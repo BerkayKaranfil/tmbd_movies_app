@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../provider/movie_detail_page_providers/movie_credit_provider.dart';
 import '../../provider/movie_detail_page_providers/movie_detail_provider.dart';
@@ -52,38 +53,50 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             children: [
               Consumer<MovieDetailProvider>(
                 builder: (context, value, Widget) {
-                  return Container(
-                    height: 55.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.detailModel.backdropPath}"),
-                            fit: BoxFit.fill)),
-                    child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 45.h, left: 5.w),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/return2.png",
-                                scale: 0.1.h,
-                              ),
-                              SizedBox(
-                                width: 5.w,
-                              ),
-                              Text(
-                                "Return",
-                                style: GoogleFonts.inter(
-                                    fontSize: 16, color: Color(0xffFFFFFF)),
-                              )
-                            ],
+                  return value.detailModel.backdropPath != null
+                      ? Container(
+                          height: 50.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.detailModel.backdropPath}"),
+                                  fit: BoxFit.fill)),
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: 45.h, left: 5.w),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/return2.png",
+                                      scale: 0.1.h,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      "Return",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          color: Color(0xffFFFFFF)),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        )
+                      : Shimmer.fromColors(
+                          child: Container(
+                            height: 50.h,
+                            width: 100.w,
+                            color: Colors.amber,
                           ),
-                        )),
-                  );
+                          baseColor: Colors.grey.shade300.withOpacity(0.4),
+                          highlightColor:
+                              Colors.grey.shade500.withOpacity(0.4));
                 },
               ),
               Padding(
@@ -96,9 +109,11 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ),
                     Consumer<MovieDetailProvider>(
                       builder: (context, value, Widget) {
-                        return Row(
+                        return 
+                        Row(
                           children: [
-                            CircularPercentIndicator(
+                            value.detailModel.voteAverage != null
+                           ? CircularPercentIndicator(
                                 radius: 10.w,
                                 arcType: ArcType.FULL,
                                 arcBackgroundColor: Color(0xff15161D),
@@ -110,7 +125,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                   "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
                                   style: GoogleFonts.inter(
                                       fontSize: 15, color: Color(0xffFFFFFF)),
-                                )),
+                                ))
+                                : Shimmer.fromColors(child: Container(
+                                  height: 15.h,
+                                  width: 20.w,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.amber
+                                  ),
+                                ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                                ,
                             SizedBox(
                               width: 5.w,
                             ),
@@ -122,34 +146,54 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                   //height: 4.h,
                                   width: 65.w,
                                   child: FittedBox(
-                                    child: Text(
+                                    child: value.detailModel.title != null
+                                 ?   Text(
                                       value.detailModel.title.toString(),
                                       style: GoogleFonts.inter(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xffFFFFFF)),
-                                    ),
+                                    ): Shimmer.fromColors(child: Container(
+                                      height: 3.h,
+                                      width: 50.w,
+                                      color: Colors.amber,
+                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                                    ,
                                   ),
                                 ),
                                 Row(
                                   children: [
-                                    Text(
+                                    value.detailModel.releaseDate != null
+                                   ? Text(
                                       value.detailModel.releaseDate.toString(),
                                       style: GoogleFonts.inter(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           color: Color(0xffBBBBBB)),
-                                    ),
+                                    ): Shimmer.fromColors(child: Container(
+                                      margin: EdgeInsets.only(top: 2.h),
+                                      height: 1.h,
+                                      width: 25.w,
+                                      color: Colors.amber,
+                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                                    ,
                                     SizedBox(
                                       width: 3.w,
                                     ),
-                                    Text(
+                                    value.detailModel.productionCompanies![0].originCountry != null
+                                   ? Text(
                                       "(${value.detailModel.productionCompanies![0].originCountry.toString()})",
                                       style: GoogleFonts.inter(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w400,
                                           color: Color(0xffBBBBBB)),
-                                    ),
+                                    ): Shimmer.fromColors(child: Container(
+                                      margin: EdgeInsets.only(top: 2.h),
+                                      height: 1.h,
+                                      width: 10.w,
+                                      color: Colors.amber,
+                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                                    ,
                                   ],
                                 )
                               ],
@@ -164,11 +208,49 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ),
                     Consumer<MovieDetailProvider>(
                       builder: (context, value, Widget) {
-                        return Text(
+                        return value.detailModel.overview != null
+                       ? Text(
                           value.detailModel.overview.toString(),
                           style: GoogleFonts.inter(
                               fontSize: 2.h, color: Color(0xffCCCCCC)),
-                        );
+                        ): Shimmer.fromColors(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 2.h,
+                              width: 80.w,
+                              color: Colors.amber,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Container(
+                              height: 2.h,
+                              width: 70.w,
+                              color: Colors.amber,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Container(
+                              height: 2.h,
+                              width: 75.w,
+                              color: Colors.amber,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Container(
+                              height: 2.h,
+                              width: 80.w,
+                              color: Colors.amber,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                          ],
+                        ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                        ;
                       },
                     ),
                     SizedBox(
@@ -224,12 +306,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           height: 14.h,
                           width: 100.w,
                           child: ListView.builder(
-                            itemCount: credit.creditModel.cast![0].name
+                            itemCount: credit.creditModel.cast![0].profilePath!.toString().length,
+                             /* credit.creditModel.cast![0].name
                                 .toString()
-                                .length,
+                                .length, */
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return Container(
+                              return credit.creditModel.cast![index].profilePath != null
+                             ? Container(
                                 height: 14.h,
                                 width: 37.w,
 
@@ -274,7 +358,17 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                     )
                                   ],
                                 ),
-                              );
+                              ): Shimmer.fromColors(child: Container(
+                                height: 10.h,
+                                width: 18.w,
+                                margin: EdgeInsets.only(right: 5.w),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber,
+                                
+                                ),
+                              ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                              ;
                             },
                           ),
                         );
@@ -305,7 +399,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             itemCount:
                                 creditCategory.detailModel.genres!.length,
                             itemBuilder: (context, index) {
-                              return Container(
+                              return creditCategory.detailModel.genres != null
+                              ?Container(
                                 margin: EdgeInsets.only(right: 2.w),
                                 width: 20.w,
                                 decoration: BoxDecoration(
@@ -320,7 +415,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                         fontSize: 15, color: Color(0xffFFFFFF)),
                                   ),
                                 ),
-                              );
+                              ): Shimmer.fromColors(child: Container(
+                                height: 3.h,
+                                width: 20.w,
+                                margin: EdgeInsets.only(right: 5.w),
+                                decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(15)
+                                ),
+                              ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
+                              ;
                             },
                           ),
                         );

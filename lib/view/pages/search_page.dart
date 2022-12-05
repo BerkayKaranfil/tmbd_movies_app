@@ -94,7 +94,8 @@ class _SearchPageState extends State<SearchPage> {
                                   color: Color(0xffFFFFFF),
                                   size: 4.h,
                                 )),
-                            hintText: "Search",
+                            hintText: "Search Movie",
+                            contentPadding: EdgeInsets.only(left: 10.w),
                             hintStyle: TextStyle(color: Color(0xffFFFFFF)),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -119,7 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                     child: ListView.builder(
                       itemCount: value.searchModel.results!.length,
                       itemBuilder: (context, index) {
-                        return value.searchModel.results == null
+                        return value.searchModel.results == null 
                             ? Shimmer.fromColors(
                                 child: Padding(
                                   padding: EdgeInsets.only(bottom: 3.h),

@@ -109,32 +109,36 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ),
                     Consumer<MovieDetailProvider>(
                       builder: (context, value, Widget) {
-                        return 
-                        Row(
+                        return Row(
                           children: [
                             value.detailModel.voteAverage != null
-                           ? CircularPercentIndicator(
-                                radius: 10.w,
-                                arcType: ArcType.FULL,
-                                arcBackgroundColor: Color(0xff15161D),
-                                lineWidth: 1.w,
-                                progressColor: Color(0xffFF1F8A),
-                                percent:
-                                    (value.detailModel.voteAverage * 10) / 100,
-                                center: Text(
-                                  "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
-                                  style: GoogleFonts.inter(
-                                      fontSize: 15, color: Color(0xffFFFFFF)),
-                                ))
-                                : Shimmer.fromColors(child: Container(
-                                  height: 15.h,
-                                  width: 20.w,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.amber
-                                  ),
-                                ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                                ,
+                                ? CircularPercentIndicator(
+                                    radius: 10.w,
+                                    arcType: ArcType.FULL,
+                                    arcBackgroundColor: Color(0xff15161D),
+                                    lineWidth: 1.w,
+                                    progressColor: Color(0xffFF1F8A),
+                                    percent:
+                                        (value.detailModel.voteAverage * 10) /
+                                            100,
+                                    center: Text(
+                                      "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 15,
+                                          color: Color(0xffFFFFFF)),
+                                    ))
+                                : Shimmer.fromColors(
+                                    child: Container(
+                                      height: 15.h,
+                                      width: 20.w,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.amber),
+                                    ),
+                                    baseColor:
+                                        Colors.grey.shade300.withOpacity(0.4),
+                                    highlightColor:
+                                        Colors.grey.shade500.withOpacity(0.4)),
                             SizedBox(
                               width: 5.w,
                             ),
@@ -147,53 +151,71 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                   width: 65.w,
                                   child: FittedBox(
                                     child: value.detailModel.title != null
-                                 ?   Text(
-                                      value.detailModel.title.toString(),
-                                      style: GoogleFonts.inter(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xffFFFFFF)),
-                                    ): Shimmer.fromColors(child: Container(
-                                      height: 3.h,
-                                      width: 50.w,
-                                      color: Colors.amber,
-                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                                    ,
+                                        ? Text(
+                                            value.detailModel.title.toString(),
+                                            style: GoogleFonts.inter(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xffFFFFFF)),
+                                          )
+                                        : Shimmer.fromColors(
+                                            child: Container(
+                                              height: 3.h,
+                                              width: 50.w,
+                                              color: Colors.amber,
+                                            ),
+                                            baseColor: Colors.grey.shade300
+                                                .withOpacity(0.4),
+                                            highlightColor: Colors.grey.shade500
+                                                .withOpacity(0.4)),
                                   ),
                                 ),
                                 Row(
                                   children: [
                                     value.detailModel.releaseDate != null
-                                   ? Text(
-                                      value.detailModel.releaseDate.toString(),
-                                      style: GoogleFonts.inter(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xffBBBBBB)),
-                                    ): Shimmer.fromColors(child: Container(
-                                      margin: EdgeInsets.only(top: 2.h),
-                                      height: 1.h,
-                                      width: 25.w,
-                                      color: Colors.amber,
-                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                                    ,
+                                        ? Text(
+                                            value.detailModel.releaseDate
+                                                .toString(),
+                                            style: GoogleFonts.inter(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xffBBBBBB)),
+                                          )
+                                        : Shimmer.fromColors(
+                                            child: Container(
+                                              margin: EdgeInsets.only(top: 2.h),
+                                              height: 1.h,
+                                              width: 25.w,
+                                              color: Colors.amber,
+                                            ),
+                                            baseColor: Colors.grey.shade300
+                                                .withOpacity(0.4),
+                                            highlightColor: Colors.grey.shade500
+                                                .withOpacity(0.4)),
                                     SizedBox(
                                       width: 3.w,
                                     ),
-                                    value.detailModel.productionCompanies![0].originCountry != null
-                                   ? Text(
-                                      "(${value.detailModel.productionCompanies![0].originCountry.toString()})",
-                                      style: GoogleFonts.inter(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xffBBBBBB)),
-                                    ): Shimmer.fromColors(child: Container(
-                                      margin: EdgeInsets.only(top: 2.h),
-                                      height: 1.h,
-                                      width: 10.w,
-                                      color: Colors.amber,
-                                    ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                                    ,
+                                    value.detailModel.productionCompanies![0]
+                                                .originCountry !=
+                                            null
+                                        ? Text(
+                                            "(${value.detailModel.productionCompanies![0].originCountry.toString()})",
+                                            style: GoogleFonts.inter(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                                color: Color(0xffBBBBBB)),
+                                          )
+                                        : Shimmer.fromColors(
+                                            child: Container(
+                                              margin: EdgeInsets.only(top: 2.h),
+                                              height: 1.h,
+                                              width: 10.w,
+                                              color: Colors.amber,
+                                            ),
+                                            baseColor: Colors.grey.shade300
+                                                .withOpacity(0.4),
+                                            highlightColor: Colors.grey.shade500
+                                                .withOpacity(0.4)),
                                   ],
                                 )
                               ],
@@ -209,48 +231,53 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     Consumer<MovieDetailProvider>(
                       builder: (context, value, Widget) {
                         return value.detailModel.overview != null
-                       ? Text(
-                          value.detailModel.overview.toString(),
-                          style: GoogleFonts.inter(
-                              fontSize: 2.h, color: Color(0xffCCCCCC)),
-                        ): Shimmer.fromColors(child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 2.h,
-                              width: 80.w,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                            Container(
-                              height: 2.h,
-                              width: 70.w,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                            Container(
-                              height: 2.h,
-                              width: 75.w,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                            Container(
-                              height: 2.h,
-                              width: 80.w,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                          ],
-                        ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                        ;
+                            ? Text(
+                                value.detailModel.overview.toString(),
+                                style: GoogleFonts.inter(
+                                    fontSize: 2.h, color: Color(0xffCCCCCC)),
+                              )
+                            : Shimmer.fromColors(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 2.h,
+                                      width: 80.w,
+                                      color: Colors.amber,
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Container(
+                                      height: 2.h,
+                                      width: 70.w,
+                                      color: Colors.amber,
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Container(
+                                      height: 2.h,
+                                      width: 75.w,
+                                      color: Colors.amber,
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                    Container(
+                                      height: 2.h,
+                                      width: 80.w,
+                                      color: Colors.amber,
+                                    ),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
+                                  ],
+                                ),
+                                baseColor:
+                                    Colors.grey.shade300.withOpacity(0.4),
+                                highlightColor:
+                                    Colors.grey.shade500.withOpacity(0.4));
                       },
                     ),
                     SizedBox(
@@ -306,37 +333,42 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           height: 14.h,
                           width: 100.w,
                           child: ListView.builder(
-                            itemCount: credit.creditModel.cast![0].profilePath!.toString().length,
-                             /* credit.creditModel.cast![0].name
+                            itemCount: credit.creditModel.cast![0].profilePath!
+                                .toString()
+                                .length,
+                            /* credit.creditModel.cast![0].name
                                 .toString()
                                 .length, */
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return credit.creditModel.cast![index].profilePath != null
-                             ? Container(
-                                height: 14.h,
-                                width: 37.w,
+                              return credit.creditModel.cast![index]
+                                          .profilePath !=
+                                      null
+                                  ? Container(
+                                      height: 14.h,
+                                      width: 37.w,
 
-                                //  margin: EdgeInsets.only(right: 4.w),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
                                       //  margin: EdgeInsets.only(right: 4.w),
-                                      height: 10.h,
-                                      width: 18.w,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              width: 0.5.w,
-                                              color: Color.fromARGB(
-                                                  255, 73, 71, 71)),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${credit.creditModel.cast![index].profilePath}"),
-                                              fit: BoxFit.cover)),
-                                    ),
-                                    /* CircleAvatar(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            //  margin: EdgeInsets.only(right: 4.w),
+                                            height: 10.h,
+                                            width: 18.w,
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                    width: 0.5.w,
+                                                    color: Color.fromARGB(
+                                                        255, 73, 71, 71)),
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${credit.creditModel.cast![index].profilePath}"),
+                                                    fit: BoxFit.cover)),
+                                          ),
+                                          /* CircleAvatar(
                                       radius: 40,
                                       child: Image(
                                         image: NetworkImage(
@@ -344,31 +376,36 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                         fit: BoxFit.fill,
                                       ),
                                     ) */
-                                    SizedBox(
-                                      height: 2.h,
-                                      width: double.infinity,
-                                      child: FittedBox(
-                                        child: Text(
-                                          credit.creditModel.cast![index].name
-                                              .toString(),
-                                          style: GoogleFonts.inter(
-                                              color: Color(0xffFFFFFF)),
-                                        ),
+                                          SizedBox(
+                                            height: 2.h,
+                                            width: double.infinity,
+                                            child: FittedBox(
+                                              child: Text(
+                                                credit.creditModel.cast![index]
+                                                    .name
+                                                    .toString(),
+                                                style: GoogleFonts.inter(
+                                                    color: Color(0xffFFFFFF)),
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     )
-                                  ],
-                                ),
-                              ): Shimmer.fromColors(child: Container(
-                                height: 10.h,
-                                width: 18.w,
-                                margin: EdgeInsets.only(right: 5.w),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.amber,
-                                
-                                ),
-                              ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                              ;
+                                  : Shimmer.fromColors(
+                                      child: Container(
+                                        height: 10.h,
+                                        width: 18.w,
+                                        margin: EdgeInsets.only(right: 5.w),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.amber,
+                                        ),
+                                      ),
+                                      baseColor:
+                                          Colors.grey.shade300.withOpacity(0.4),
+                                      highlightColor: Colors.grey.shade500
+                                          .withOpacity(0.4));
                             },
                           ),
                         );
@@ -399,32 +436,42 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             itemCount:
                                 creditCategory.detailModel.genres!.length,
                             itemBuilder: (context, index) {
-                              return creditCategory.detailModel.genres != null
-                              ?Container(
-                                margin: EdgeInsets.only(right: 2.w),
-                                width: 20.w,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Color(0xff303243)),
-                                child: Center(
-                                  child: Text(
-                                    creditCategory
-                                        .detailModel.genres![index].name
-                                        .toString(),
-                                    style: GoogleFonts.inter(
-                                        fontSize: 15, color: Color(0xffFFFFFF)),
-                                  ),
-                                ),
-                              ): Shimmer.fromColors(child: Container(
-                                height: 3.h,
-                                width: 20.w,
-                                margin: EdgeInsets.only(right: 5.w),
-                                decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(15)
-                                ),
-                              ), baseColor: Colors.grey.shade300.withOpacity(0.4), highlightColor: Colors.grey.shade500.withOpacity(0.4))
-                              ;
+                              return creditCategory.detailModel.genres != null 
+                                  ? Container(
+                                      margin: EdgeInsets.only(right: 2.w),
+                                      width: 20.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Color(0xff303243)),
+                                      child: Center(
+                                        child: FittedBox(
+                                          child: Text(
+                                            creditCategory
+                                                .detailModel.genres![index].name
+                                                .toString(),
+                                            style: GoogleFonts.inter(
+                                                fontSize: 15,
+                                                color: Color(0xffFFFFFF),
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Shimmer.fromColors(
+                                      child: Container(
+                                        height: 3.h,
+                                        width: 20.w,
+                                        margin: EdgeInsets.only(right: 5.w),
+                                        decoration: BoxDecoration(
+                                            color: Colors.amber,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                      ),
+                                      baseColor:
+                                          Colors.grey.shade300.withOpacity(0.4),
+                                      highlightColor: Colors.grey.shade500
+                                          .withOpacity(0.4));
                             },
                           ),
                         );

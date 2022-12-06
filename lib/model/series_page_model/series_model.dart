@@ -35,16 +35,16 @@ class Results {
   String? backdropPath;
   String? firstAirDate;
   List<int>? genreIds;
-  int? id;
+  dynamic id;
   String? name;
   List<String>? originCountry;
   String? originalLanguage;
   String? originalName;
   String? overview;
-  double? popularity;
+  dynamic popularity;
   String? posterPath;
-  double? voteAverage;
-  int? voteCount;
+  dynamic voteAverage;
+  dynamic voteCount;
 
   Results(
       {this.backdropPath,

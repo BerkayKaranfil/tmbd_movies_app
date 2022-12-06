@@ -6,7 +6,7 @@ import 'package:tmbd_movies_app/services/search_page_services/search_service.dar
 
 class SearchProvider extends ChangeNotifier{
   SearchModel searchModel = SearchModel();
-  dynamic query = "Berkay";
+  dynamic query = "god";
   bool isLoaded = false;
 
   getSearchData()async{

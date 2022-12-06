@@ -394,14 +394,54 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                     )
                                   : Shimmer.fromColors(
                                       child: Container(
-                                        height: 10.h,
-                                        width: 18.w,
-                                        margin: EdgeInsets.only(right: 5.w),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.amber,
+                                        height: 14.h,
+                                        width: 37.w,
+
+                                        //  margin: EdgeInsets.only(right: 4.w),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              //  margin: EdgeInsets.only(right: 4.w),
+                                              height: 10.h,
+                                              width: 18.w,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  width: 0.5.w,
+                                                ),
+                                              ),
+                                              child: Image.asset(
+                                                  "assets/noimage.png"),
+                                            ),
+                                            SizedBox(
+                                              height: 2.h,
+                                              width: double.infinity,
+                                              child: FittedBox(
+                                                child: Text(
+                                                  credit.creditModel
+                                                      .cast![index].name
+                                                      .toString(),
+                                                  style: GoogleFonts.inter(
+                                                      color: Color(0xffFFFFFF)),
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
+                                      /* Container(
+                                        
+                                        height: 10.h,
+                                        width: 18.w,
+                                        margin: EdgeInsets.only(right: 5.w, bottom: 4.h),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                         // color: Colors.amber,
+                                        ),
+                                        child: Image.asset("assets/noimage.png"),
+                                      ), */
                                       baseColor:
                                           Colors.grey.shade300.withOpacity(0.4),
                                       highlightColor: Colors.grey.shade500
@@ -436,7 +476,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             itemCount:
                                 creditCategory.detailModel.genres!.length,
                             itemBuilder: (context, index) {
-                              return creditCategory.detailModel.genres != null 
+                              return creditCategory.detailModel.genres != null
                                   ? Container(
                                       margin: EdgeInsets.only(right: 2.w),
                                       width: 20.w,

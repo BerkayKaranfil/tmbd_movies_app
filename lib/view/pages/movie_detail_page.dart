@@ -74,6 +74,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                     Image.asset(
                                       "assets/return2.png",
                                       scale: 0.1.h,
+                                      color: Colors.redAccent,
                                     ),
                                     SizedBox(
                                       width: 5.w,
@@ -82,7 +83,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                       "Return",
                                       style: GoogleFonts.inter(
                                           fontSize: 16,
-                                          color: Color(0xffFFFFFF)),
+                                          color: Colors.redAccent,
+                                          fontWeight: FontWeight.bold),
                                     )
                                   ],
                                 ),

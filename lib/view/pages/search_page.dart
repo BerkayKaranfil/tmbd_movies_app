@@ -9,6 +9,7 @@ import 'package:tmbd_movies_app/provider/search_page_providers/search_provider.d
 import 'package:tmbd_movies_app/services/search_page_services/search_service.dart';
 
 import '../../provider/movie_detail_page_providers/movie_detail_provider.dart';
+import 'movie_detail_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -165,52 +166,85 @@ class _SearchPageState extends State<SearchPage> {
                                     Colors.grey.shade300.withOpacity(0.4),
                                 highlightColor:
                                     Colors.grey.shade500.withOpacity(0.4))
-                            : Row(
-                                children: [
-                                  Container(
-                                    height: 15.h,
-                                    width: 20.w,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            width: 0.5.w,
-                                            color: Color.fromARGB(
-                                                255, 73, 71, 71)),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.searchModel.results![index].posterPath}"))),
-                                  ),
-                                  SizedBox(
-                                    width: 2.w,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 2.h,
-                                        width: 60.w,
-                                        //color: Colors.blue,
-                                        // Buradan see more boyutunu ayarla.
-                                        child: Text(
-                                          value.searchModel.results![index].title
-                                              .toString(),
-                                          style: GoogleFonts.inter(
-                                              fontSize: 2.h,
-                                              color: Color(0xffFFFFFF),), overflow: TextOverflow.ellipsis,
+                            : GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetailPage(
+                                      film_id: value
+                                          .searchModel.results![index].id!,
+                                      film_id_credit: value
+                                          .searchModel.results![index].id!,
+                                    ),
+                                  ));
+                              },
+                              child: Row(
+                                  children: [
+                                    Container(
+                                      height: 15.h,
+                                      width: 20.w,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              width: 0.5.w,
+                                              color: Color.fromARGB(
+                                                  255, 73, 71, 71)),
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.searchModel.results![index].posterPath}"))),
+                                    ),
+                                    SizedBox(
+                                      width: 2.w,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 2.h,
+                                          width: 60.w,
+                                          //color: Colors.blue,
+                                          // Buradan see more boyutunu ayarla.
+                                          child: Text(
+                                            value.searchModel.results![index].title
+                                                .toString(),
+                                            style: GoogleFonts.inter(
+                                                fontSize: 2.h,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xffFFFFFF),), overflow: TextOverflow.ellipsis,
+                                                
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "Rating = ${value.searchModel.results![index].voteAverage.toStringAsFixed(1)}/10",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 1.8.h,
-                                            color: Color(0xffFFFFFF)),
-                                      ),
-                                    ],
-                                  )
-                                  // Buraya see more butonu koy, basıldığında filmin detaylarına gitsin.
-                                ],
-                              );
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Image.asset("assets/rating.png",scale: 2.8,),
+                                            SizedBox(
+                                              width: 2.w,
+                                            ),
+                                            Text(
+                                          "${value.searchModel.results![index].voteAverage.toStringAsFixed(1)}",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 1.8.h,
+                                              color: Color(0xffFFFFFF)),
+                                        ),
+                                          ],
+                                        ),
+                                        /* Text(
+                                          "Rating = ${value.searchModel.results![index].voteAverage.toStringAsFixed(1)}/10",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 1.8.h,
+                                              color: Color(0xffFFFFFF)),
+                                        ), */
+                                      ],
+                                    )
+                                    // Buraya see more butonu koy, basıldığında filmin detaylarına gitsin.
+                                  ],
+                                ),
+                            );
                       },
                     ),
                   );

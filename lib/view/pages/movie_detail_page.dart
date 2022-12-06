@@ -120,9 +120,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                     arcBackgroundColor: Color(0xff15161D),
                                     lineWidth: 1.w,
                                     progressColor: Color(0xffFF1F8A),
+                                    
                                     percent:
-                                        (value.detailModel.voteAverage * 10) /
-                                            100,
+                                        value.detailModel.voteAverage / 10,
                                     center: Text(
                                       "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
                                       style: GoogleFonts.inter(

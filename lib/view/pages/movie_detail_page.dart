@@ -133,14 +133,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                                   ),
                                   Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                        CrossAxisAlignment.center,
+                                    //mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        //height: 4.h,
+                                        height: 5.h,
                                         width: 65.w,
                                         child: FittedBox(
                                             child: Text(
+                                          textAlign: TextAlign.center,
                                           value.detailModel.title.toString(),
                                           style: GoogleFonts.inter(
                                               fontSize: 22,
@@ -251,7 +252,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         height: 6.h,
                         width: 90.w,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
+                            gradient: LinearGradient(
+                                colors: [Color(0xff8000FF), Color(0xff540BA1)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight),
                             borderRadius: BorderRadius.circular(60)),
                         child: Row(
                           children: [
@@ -295,16 +299,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           height: 14.h,
                           width: 100.w,
                           child: ListView.builder(
-                            itemCount: credit.creditModel.cast![0].profilePath!
-                                .toString()
-                                .length,
+                            itemCount: credit.creditModel.cast!.length,
                             /* credit.creditModel.cast![0].name
                                 .toString()
                                 .length, */
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return credit.creditModel.cast![index]
-                                          .profilePath  !=
+                                          .profilePath !=
                                       null
                                   ? Container(
                                       height: 14.h,

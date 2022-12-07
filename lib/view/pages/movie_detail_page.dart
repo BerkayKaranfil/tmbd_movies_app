@@ -111,119 +111,79 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                     ),
                     Consumer<MovieDetailProvider>(
                       builder: (context, value, Widget) {
-                        return Row(
-                          children: [
-                            value.detailModel.voteAverage != null
-                                ? CircularPercentIndicator(
-                                    radius: 10.w,
-                                    arcType: ArcType.FULL,
-                                    arcBackgroundColor: Color(0xff15161D),
-                                    lineWidth: 1.w,
-                                    progressColor: Color(0xffFF1F8A),
-                                    
-                                    percent:
-                                        value.detailModel.voteAverage / 10,
-                                    center: Text(
-                                      "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
-                                      style: GoogleFonts.inter(
-                                          fontSize: 15,
-                                          color: Color(0xffFFFFFF)),
-                                    ))
-                                : Shimmer.fromColors(
-                                    child: Container(
-                                      height: 15.h,
-                                      width: 20.w,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.amber),
-                                    ),
-                                    baseColor:
-                                        Colors.grey.shade300.withOpacity(0.4),
-                                    highlightColor:
-                                        Colors.grey.shade500.withOpacity(0.4)),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  //height: 4.h,
-                                  width: 65.w,
-                                  child: FittedBox(
-                                    child: value.detailModel.title != null
-                                        ? Text(
-                                            value.detailModel.title.toString(),
-                                            style: GoogleFonts.inter(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xffFFFFFF)),
-                                          )
-                                        : Shimmer.fromColors(
-                                            child: Container(
-                                              height: 3.h,
-                                              width: 50.w,
-                                              color: Colors.amber,
-                                            ),
-                                            baseColor: Colors.grey.shade300
-                                                .withOpacity(0.4),
-                                            highlightColor: Colors.grey.shade500
-                                                .withOpacity(0.4)),
+                        return value.isLoading
+                            ? Row(
+                                children: [
+                                  CircularPercentIndicator(
+                                      radius: 10.w,
+                                      arcType: ArcType.FULL,
+                                      arcBackgroundColor: Color(0xff15161D),
+                                      lineWidth: 1.w,
+                                      progressColor: Color(0xffFF1F8A),
+                                      percent:
+                                          value.detailModel.voteAverage / 10,
+                                      center: Text(
+                                        "${value.detailModel.voteAverage.toStringAsFixed(1)}/10",
+                                        style: GoogleFonts.inter(
+                                            fontSize: 15,
+                                            color: Color(0xffFFFFFF)),
+                                      )),
+                                  SizedBox(
+                                    width: 5.w,
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    value.detailModel.releaseDate != null
-                                        ? Text(
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        //height: 4.h,
+                                        width: 65.w,
+                                        child: FittedBox(
+                                            child: Text(
+                                          value.detailModel.title.toString(),
+                                          style: GoogleFonts.inter(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xffFFFFFF)),
+                                        )),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
                                             value.detailModel.releaseDate
                                                 .toString(),
                                             style: GoogleFonts.inter(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                                 color: Color(0xffBBBBBB)),
-                                          )
-                                        : Shimmer.fromColors(
-                                            child: Container(
-                                              margin: EdgeInsets.only(top: 2.h),
-                                              height: 1.h,
-                                              width: 25.w,
-                                              color: Colors.amber,
-                                            ),
-                                            baseColor: Colors.grey.shade300
-                                                .withOpacity(0.4),
-                                            highlightColor: Colors.grey.shade500
-                                                .withOpacity(0.4)),
-                                    SizedBox(
-                                      width: 3.w,
-                                    ),
-                                    value.detailModel.productionCompanies![0]
-                                                .originCountry !=
-                                            null
-                                        ? Text(
+                                          ),
+                                          SizedBox(
+                                            width: 3.w,
+                                          ),
+                                          Text(
                                             "(${value.detailModel.productionCompanies![0].originCountry.toString()})",
                                             style: GoogleFonts.inter(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w400,
                                                 color: Color(0xffBBBBBB)),
                                           )
-                                        : Shimmer.fromColors(
-                                            child: Container(
-                                              margin: EdgeInsets.only(top: 2.h),
-                                              height: 1.h,
-                                              width: 10.w,
-                                              color: Colors.amber,
-                                            ),
-                                            baseColor: Colors.grey.shade300
-                                                .withOpacity(0.4),
-                                            highlightColor: Colors.grey.shade500
-                                                .withOpacity(0.4)),
-                                  ],
-                                )
-                              ],
-                            )
-                          ],
-                        );
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )
+                            : Shimmer.fromColors(
+                                child: Container(
+                                  height: 2.h,
+                                  width: 40.w,
+                                  color: Colors.amber,
+                                ),
+                                baseColor:
+                                    Colors.grey.shade300.withOpacity(0.4),
+                                highlightColor:
+                                    Colors.grey.shade500.withOpacity(0.4));
                       },
                     ),
                     Divider(
@@ -344,7 +304,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return credit.creditModel.cast![index]
-                                          .profilePath !=
+                                          .profilePath  !=
                                       null
                                   ? Container(
                                       height: 14.h,

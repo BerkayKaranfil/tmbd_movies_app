@@ -6,9 +6,13 @@ import '../../services/movie_datail_page_services/credit_service.dart';
 class MovieCreditProvider extends ChangeNotifier {
    CreditModel creditModel = CreditModel();
   int film_id_credit = 0;
+  bool isLoading = false;
+  
 
   getCreditMovie() async {
+    isLoading = false;
     creditModel = (await getCreditFilmsService(film_id_credit))!;
+    isLoading = true;
     notifyListeners();
   }
 
